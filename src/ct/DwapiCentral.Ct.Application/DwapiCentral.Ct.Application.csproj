@@ -12,4 +12,8 @@
     <ProjectReference Include="..\DwapiCentral.Ct.Domain\DwapiCentral.Ct.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\Repository\" />
+  </ItemGroup>
+
 </Project>
