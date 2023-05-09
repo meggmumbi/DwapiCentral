@@ -7,13 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
+    <None Remove="Interfaces\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\contracts\DwapiCentral.Contracts\DwapiCentral.Contracts.csproj" />
     <ProjectReference Include="..\..\shared\DwapiCentral.Shared\DwapiCentral.Shared.csproj" />
     <ProjectReference Include="..\DwapiCentral.Ct.Domain\DwapiCentral.Ct.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Repository\" />
+    <Folder Include="DTOs\" />
   </ItemGroup>
 
 </Project>
