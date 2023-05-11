@@ -12,6 +12,7 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Context
     public class DwapiCentralContext : DbContext
     {
         public DbSet<PatientExtract> Patients { get; set; }
+        public string ConnectionString { get; internal set; }
 
         public DwapiCentralContext(DbContextOptions<DwapiCentralContext> options) : base(options)
         {
@@ -20,7 +21,9 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PatientExtract>().HasKey(p => p.Id);
+            modelBuilder.Entity<PatientExtract>()
+                .HasIndex(p =>new {p.PatientPID,p.FacilityId})
+                .IsUnique(true);
             base.OnModelCreating(modelBuilder);
         }
 

@@ -9,7 +9,9 @@ namespace DwapiCentral.Ct.Application.Interfaces.Repository
     public interface IPatientExtractRepository 
     {
         Task<bool> ExistsAsync(int PatientId);
-        Task AddAsync(PatientExtract patient);
+        //Task AddAsync(PatientExtract patient);
+
+        Task AddPatientsAsync(IEnumerable<PatientExtract> patients);
 
     }
 }

@@ -21,29 +21,38 @@ namespace DwapiCentral.Ct.Application.Services
             _patientRepository = patientRepository;
         }
 
-        public async void ProcessPatientData(IEnumerable<PatientSourceDto> patients)
+        public async void ProcessPatientData(IEnumerable<PatientExtract> patients)
         {
-            var distinctPatients = patients
-                .GroupBy(p => p.PatientPID)
-                .Select(g => g.First());
+            //var distinctPatients = patients
+            //    .GroupBy(p => p.PatientPID)
+            //    .Select(g => g.First());
 
-            foreach(var patientDTO in distinctPatients)
-            {
-                var exists = await _patientRepository.ExistsAsync(patientDTO.PatientPID);
+            //foreach (var patientDTO in distinctPatients)
+            //{
+            //    var exists = await _patientRepository.ExistsAsync(patientDTO.PatientPID);
 
-                if (exists)
-                {
-                    throw new Exception($"");
-                }
+            //    if (exists)
+            //    {
+            //        throw new Exception($"");
+            //    }
 
-                var patient = new PatientExtract
-                {
-                    PatientPID = patientDTO.PatientPID
+            //    var patient = new PatientExtract
+            //    {
+            //        PatientPID = patientDTO.PatientPID
 
-                };
+            //    };
 
-                await _patientRepository.AddAsync(patient);
-            }
+            //    var uniquePatients = new HashSet<PatientExtract>(new PatientComparer());
+            //foreach (var patient in patients)
+            //{
+            //    uniquePatients.Add(patient);
+            //}
+
+
+           
+
+                await _patientRepository.AddPatientsAsync(patients);
+            
         }
     }
 }

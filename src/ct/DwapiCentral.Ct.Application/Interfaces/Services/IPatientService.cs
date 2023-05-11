@@ -1,4 +1,5 @@
 ﻿using DwapiCentral.Ct.Application.DTOs;
+using DwapiCentral.Ct.Domain.Models.Extracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace DwapiCentral.Ct.Application.Interfaces.Services
 {
     public interface IPatientService
     {
-        void ProcessPatientData(IEnumerable<PatientSourceDto> patients);
+        void ProcessPatientData(IEnumerable<PatientExtract> patients);
     }
 }
