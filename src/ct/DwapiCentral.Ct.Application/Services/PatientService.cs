@@ -15,10 +15,31 @@ namespace DwapiCentral.Ct.Application.Services
     {
 
         private readonly IPatientExtractRepository _patientRepository;
+        private readonly IFacilityRepository    _facilityRepository;
+        private readonly IManifestRepository _manifestRepository;
         
-        public PatientService(IPatientExtractRepository patientRepository)
+        public PatientService(IPatientExtractRepository patientRepository, IFacilityRepository facilityRepository, IManifestRepository manifest)
         {
             _patientRepository = patientRepository;
+            _facilityRepository = facilityRepository;
+            _manifestRepository = manifest;
+        }
+
+        public async Task AddManifestAsync(Manifest manifest)
+        {
+            if(manifest.PatientCount <= 0)
+            {
+                throw new Exception("");
+            }
+
+            var facility = await _facilityRepository.GetFacilityByIdAsync(manifest.SiteCode);
+            if (facility == null)
+            {
+                throw new ArgumentException($"Facility with ID {manifest.SiteCode} does not exist.");
+            }
+
+            await _manifestRepository.AddAsync(manifest);
+
         }
 
         public async void ProcessPatientData(IEnumerable<PatientExtract> patients)
