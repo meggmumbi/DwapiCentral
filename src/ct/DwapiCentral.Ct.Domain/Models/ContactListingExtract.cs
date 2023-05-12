@@ -35,6 +35,9 @@ namespace DwapiCentral.Ct.Domain.Models.Extracts
         public DateTime? Updated { get; set; }
         public DateTime? Extracted { get; set; }
 
+        // navigation property to PatientExtract
+        public virtual PatientExtract Patient { get; set; }
+
         public ContactListingExtract()
         {
             Created = DateTime.Now;

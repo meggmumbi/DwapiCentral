@@ -40,6 +40,9 @@ namespace DwapiCentral.Ct.Domain.Models.Extracts
         public bool Voided { get; set; }
         public DateTime? Updated { get; set; }
         public DateTime? Extracted { get; set; }
+                     
+        // navigation property to PatientExtract
+        public virtual PatientExtract Patient { get; set; }
 
         public PatientBaselinesExtract()
         {

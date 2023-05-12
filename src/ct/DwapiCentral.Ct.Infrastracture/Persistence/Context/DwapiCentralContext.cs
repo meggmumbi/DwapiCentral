@@ -4,6 +4,7 @@ using DwapiCentral.Ct.Domain.Models.Extracts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,14 +50,72 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Context
             .HasIndex(p => new { p.PatientPID, p.SiteCode, p.FacilityId })
             .IsUnique(true);
 
-            modelBuilder.Entity<PatientLaboratoryExtract>()
-                .HasIndex(p => new {p.Id })
+            //configuration for setting the relationship
+            modelBuilder.Entity<AllergiesChronicIllnessExtract>()
+                .HasOne(p => p.Patient)
+                .WithMany(p => p.AllergiesChronicIllnessExtracts)
+                .HasForeignKey(p =>p.PatientId);
+
+            //Configuration for index
+            modelBuilder.Entity<AllergiesChronicIllnessExtract>()
+                .HasIndex(p => new { p.PatientId, p.VisitID, p.VisitDate })
                 .IsUnique(true);
+
+            modelBuilder.Entity<ContactListingExtract>()
+                .HasOne(p => p.Patient)
+                .WithMany(p => p.ContactListingExtracts)
+                .HasForeignKey(p => p.PatientId);
+
+            modelBuilder.Entity<ContactListingExtract>()
+                .HasIndex(p=> new { p.SiteCode,p.PatientId})
+                .IsUnique(true);
+
+            modelBuilder.Entity<CovidExtract>()
+                .HasOne(p=>p.Patient)
+                .WithMany(p => p.CovidExtracts)
+                .HasForeignKey(p=>p.PatientId);
+
+            modelBuilder.Entity<CovidExtract>()
+                .HasIndex(p => new { p.PatientId,p.SiteCode})
+                .IsUnique(true);
+
+            modelBuilder.Entity<DefaulterTracingExtract>()
+                .HasOne(p => p.Patient)
+                .WithMany(p => p.DefaulterTracingExtracts)
+                .HasForeignKey(p => p.PatientId);
+
+            modelBuilder.Entity<DefaulterTracingExtract>()
+                .HasIndex(p => new { p.PatientId,p.SiteCode})
+                .IsUnique(true);
+
+            modelBuilder.Entity<DepressionScreeningExtract>()
+                .HasOne(p => p.Patient)
+                .WithMany(p => p.DepressionScreeningExtracts)
+                .HasForeignKey(p => p.PatientId);
+
+            modelBuilder.Entity<PatientLaboratoryExtract>()
+                .HasIndex(p => new {p.SiteCode,p.PatientId,p.OrderedByDate,p.TestResult,p.TestName })
+                .IsUnique(true);
+
+
 
             modelBuilder.Entity<PatientVisitExtract>()
                 .HasIndex(p => new { p.VisitId, p.VisitDate, p.PatientId })
                 .IsUnique(true);
-                
+
+            modelBuilder.Entity<PatientBaselinesExtract>()
+                .HasIndex(p => new { p.PatientId,p.SiteCode })
+                .IsUnique(true);
+
+            modelBuilder.Entity<PatientBaselinesExtract>()
+              .HasOne(p => p.Patient)
+              .WithMany(p => p.PatientBaselinesExtracts)
+              .HasForeignKey(p => p.PatientId);
+
+
+
+
+
 
             modelBuilder.Entity<Facility>()
                 .HasIndex(f => f.Id)

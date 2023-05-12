@@ -31,6 +31,8 @@ namespace DwapiCentral.Ct.Domain.Models.Extracts
         public DateTime? Updated { get; set; }
         public DateTime? Extracted { get; set; }
 
+        public virtual PatientExtract Patient { get; set; }
+
         public DefaulterTracingExtract()
         {
             Created = DateTime.Now;
