@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Infrastracture.Persistence.Context
 {
-    internal class DwapiCentralContext
+    public class DwapiCentralContext
     {
     }
 }
