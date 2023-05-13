@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DwapiCentral.Ct.Infrastracture.Persistence.Context
 {
-    public class DwapiCentralContext : DbContext
+    public class CtDbContext : DbContext
     {
         public DbSet<PatientExtract> PatientExtracts { get; set; }  
         public DbSet<AllergiesChronicIllnessExtract> AllergiesChronicIllnessExtracts { get; set; }
@@ -39,7 +39,7 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Context
 
 
 
-        public DwapiCentralContext(DbContextOptions<DwapiCentralContext> options) : base(options)
+        public CtDbContext(DbContextOptions<CtDbContext> options) : base(options)
         {
 
         }
