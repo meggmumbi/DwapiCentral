@@ -1,5 +1,4 @@
-﻿using DwapiCentral.Ct.Domain.Custom;
-using DwapiCentral.Shared.Domain.Entities;
+﻿using DwapiCentral.Shared.Domain.Entities;
 using DwapiCentral.Shared.Domain.Entities.Ct;
 using DwapiCentral.Shared.Domain.Model.Common;
 using System;
@@ -130,11 +129,6 @@ END
             if (string.IsNullOrWhiteSpace(Emr))
                 return false;
 
-            if (requestEmr.IsSameAs("CHAK"))
-                requestEmr = "IQCare";
-
-            if (requestEmr.IsSameAs("IQCare") || requestEmr.IsSameAs("KenyaEMR"))
-                return !Emr.IsSameAs(requestEmr);
 
             return false;
         }

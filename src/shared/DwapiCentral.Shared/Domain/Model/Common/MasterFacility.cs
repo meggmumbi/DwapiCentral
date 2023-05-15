@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DwapiCentral.Contracts.Manifest;
 
 namespace DwapiCentral.Shared.Domain.Model.Common
 {
-    public class MasterFacility : Entity<int>
+    public class MasterFacility : Entity<int>,IMasterFacility
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public override int Id { get; set; }

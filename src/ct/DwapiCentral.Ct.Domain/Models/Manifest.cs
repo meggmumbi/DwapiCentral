@@ -19,7 +19,7 @@ namespace DwapiCentral.Ct.Domain.Models.Extracts
         public EmrSetup EmrSetup { get; set; }
         public List<int> PatientPKs { get; set; } = new List<int>();
         public string Metrics { get; set; }
-        public List<FacMetric> FacMetrics { get; set; } = new List<FacMetric>();
+        public List<Metr> FacMetrics { get; set; } = new List<FacMetric>();
         public int PatientCount => PatientPKs.Count;
         public UploadMode UploadMode { get; set; }
 
@@ -113,7 +113,7 @@ WHERE
         public EmrSetup EmrSetup { get; set; }
         public List<int> PatientPKs { get; set; } = new List<int>();
         public string Metrics { get; set; }
-        public List<FacMetric> FacMetrics { get; set; } = new List<FacMetric>();
+       // public List<FacMetric> FacMetrics { get; set; } = new List<FacMetric>();
         public int PatientCount => PatientPKs.Count;
         public UploadMode UploadMode { get; set; }
 

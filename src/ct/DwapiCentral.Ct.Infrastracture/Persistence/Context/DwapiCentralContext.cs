@@ -1,5 +1,6 @@
 ﻿using DwapiCentral.Ct.Application.DTOs;
 using DwapiCentral.Ct.Domain.Models.Extracts;
+using DwapiCentral.Shared.Domain.Model.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,9 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Context
     public class DwapiCentralContext : DbContext
     {
         public DbSet<PatientExtract> Patients { get; set; }
+        public DbSet<MasterFacility> FasterFacilities { get; set; }
+        public DbSet<Facility> Facility { get; set; }
+        public DbSet<Domain.Models.Extracts.Manifest> Manifests { get; set; }
         public string ConnectionString { get; internal set; }
 
         public DwapiCentralContext(DbContextOptions<DwapiCentralContext> options) : base(options)

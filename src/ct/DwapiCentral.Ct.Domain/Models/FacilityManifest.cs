@@ -1,6 +1,7 @@
 ﻿using DwapiCentral.Shared.Domain.Entities.Ct;
 using DwapiCentral.Shared.Domain.Enums;
 using DwapiCentral.Shared.Domain.Extentions;
+using DwapiCentral.Shared.Domain.Model.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -24,7 +25,7 @@ namespace DwapiCentral.Ct.Domain.Models.Extracts
         public DateTime? Start { get; set; }
         public DateTime? End { get; set; }
         public string Tag { get; set; }
-        public ICollection<FacilityManifestCargo> Cargoes { get; set; } = new List<FacilityManifestCargo>();
+        
         [NotMapped]
         public string Metrics { get; private set; }
 
@@ -47,24 +48,7 @@ namespace DwapiCentral.Ct.Domain.Models.Extracts
             }
         }
 
-        public void AddCargo(string items)
-        {
-            var cargo = new FacilityManifestCargo(items, Id, CargoType.Patient);
-            Cargoes.Add(cargo);
-        }
-
-        public void AddMetricsCargo(string items)
-        {
-            var cargo = new FacilityManifestCargo(items, Id);
-            Cargoes.Add(cargo);
-            Metrics = items;
-        }
-
-        public void AddMetricsCargo(FacMetric metric)
-        {
-            var cargo = new FacilityManifestCargo(metric.Metric, Id, metric.CargoType);
-            Cargoes.Add(cargo);
-        }
+  
 
         public static FacilityManifest Create(Manifest manifest)
         {
@@ -79,15 +63,7 @@ namespace DwapiCentral.Ct.Domain.Models.Extracts
             fm.Start = manifest.Start;
             fm.Tag = manifest.Tag;
 
-            fm.AddCargo(manifest.Items);
-
-            if (manifest.FacMetrics.Any())
-            {
-                foreach (var m in manifest.FacMetrics)
-                {
-                    fm.AddMetricsCargo(m);
-                }
-            }
+           
             return fm;
         }
 
