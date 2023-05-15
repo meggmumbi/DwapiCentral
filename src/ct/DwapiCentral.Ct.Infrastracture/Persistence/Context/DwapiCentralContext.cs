@@ -28,6 +28,8 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Context
             modelBuilder.Entity<PatientExtract>()
                 .HasIndex(p =>new {p.PatientPID,p.FacilityId})
                 .IsUnique(true);
+
+
             base.OnModelCreating(modelBuilder);
         }
 

@@ -1,6 +1,7 @@
 ﻿using DwapiCentral.Ct.Application.Interfaces.Repository;
 using DwapiCentral.Ct.Domain.Models.Extracts;
 using DwapiCentral.Ct.Infrastracture.Persistence.Context;
+using DwapiCentral.Shared.Application.Interfaces.Repository.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Repository
 
         public async Task<Facility> GetByIdAsync(int sitecode)
         {
+            return await _dbContext.Facilities.FindAsync(siteCode);
             return await _dbContext.Set<Facility>().FirstOrDefaultAsync(p => p.Code == sitecode);
         }
     }

@@ -14,8 +14,8 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Repository
     {
         private readonly DwapiCentralContext _dbContext;
 
-        public ManifestRepository( DwapiCentralContext dbContext )
-        {
+        public ManifestRepository( DwapiCentralContext dbContext ) 
+        { 
             _dbContext = dbContext;
         }
 

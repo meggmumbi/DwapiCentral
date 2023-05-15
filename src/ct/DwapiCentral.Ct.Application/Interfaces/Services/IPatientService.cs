@@ -11,5 +11,7 @@ namespace DwapiCentral.Ct.Application.Interfaces.Services
     public interface IPatientService
     {
         void ProcessPatientData(IEnumerable<PatientExtract> patients);
+
+        Task AddManifestAsync(Manifest manifest);
     }
 }
