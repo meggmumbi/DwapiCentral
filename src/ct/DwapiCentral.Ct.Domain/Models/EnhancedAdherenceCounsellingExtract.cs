@@ -55,6 +55,7 @@ namespace DwapiCentral.Ct.Domain.Models.Extracts
         public DateTime? Created { get; set; }
         public DateTime? Date_Created { get; set; }
         public DateTime? Date_Last_Modified { get; set; }
+        public virtual PatientExtract Patient { get; set; } 
 
 
         public Guid Id { get; set; }

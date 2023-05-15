@@ -93,10 +93,26 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Context
                 .WithMany(p => p.DepressionScreeningExtracts)
                 .HasForeignKey(p => p.PatientId);
 
+            modelBuilder.Entity<DrugAlcoholScreeningExtract>()
+                .HasOne(p => p.Patient)
+                .WithMany(p => p.DrugAlcoholScreeningExtracts)
+                .HasForeignKey(p => p.PatientId);
+
+            modelBuilder.Entity<EnhancedAdherenceCounsellingExtract>()
+                .HasOne(p=>p.Patient)
+                .WithMany(P=>P.EnhancedAdherenceCounsellingExtracts) 
+                .HasForeignKey(P => P.PatientId);
+
+            modelBuilder.Entity<GbvScreeningExtract>()
+                .HasOne(p=>p.Patient)
+
+
+
             modelBuilder.Entity<PatientLaboratoryExtract>()
                 .HasIndex(p => new {p.SiteCode,p.PatientId,p.OrderedByDate,p.TestResult,p.TestName })
                 .IsUnique(true);
 
+            
 
 
             modelBuilder.Entity<PatientVisitExtract>()
