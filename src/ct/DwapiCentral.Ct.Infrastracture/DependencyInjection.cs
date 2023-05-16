@@ -20,7 +20,7 @@ namespace DwapiCentral.Ct.Infrastracture
         {
 
             var defaultConnectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<DwapiCentralContext>(options =>
+            services.AddDbContext<CtDbContext>(options =>
             options.UseSqlServer(defaultConnectionString));
 
             services.AddScoped<IFacilityRepository, FacilityRepository>();

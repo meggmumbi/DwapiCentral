@@ -10,19 +10,22 @@ using System.Threading.Tasks;
 
 namespace DwapiCentral.Ct.Infrastracture.Persistence.Repository
 {
-    public class ManifestRepository : IFacilityManifest
+    public class ManifestRepository : IFacilityManifestRepository
     {
-        private readonly DwapiCentralContext _dbContext;
+        private readonly CtDbContext _dbContext;
 
-        public ManifestRepository( DwapiCentralContext dbContext ) 
+        public ManifestRepository( CtDbContext dbContext ) 
         { 
             _dbContext = dbContext;
         }
 
-        public async Task AddAsync(Manifest manifest)
+        public async Task<FacilityManifest> AddAsync(FacilityManifest manifest)
         {
-            await _dbContext.Set<Manifest>().AddAsync( manifest );
+            var facManifest = await _dbContext.Set<FacilityManifest>().AddAsync( manifest );
             await _dbContext.SaveChangesAsync();
+            return facManifest.Entity;
+
+
         }
     }
 }

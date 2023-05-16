@@ -14,9 +14,9 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Repository
 {
     public class PatientRepository : IPatientExtractRepository
     {
-        private readonly DwapiCentralContext _dbContext;
+        private readonly CtDbContext _dbContext;
 
-        public PatientRepository(DwapiCentralContext dbContext)
+        public PatientRepository(CtDbContext dbContext)
         {
             _dbContext = dbContext;
         }

@@ -1,4 +1,7 @@
-﻿using DwapiCentral.Shared.Domain.Enums;
+﻿using DwapiCentral.Contracts.Manifest;
+using DwapiCentral.Shared.Domain.Custom;
+using DwapiCentral.Shared.Domain.Enums;
+using DwapiCentral.Shared.Domain.Model.Common;
 using Infrastracture.Custom;
 using System;
 using System.Collections.Generic;
@@ -8,62 +11,35 @@ using System.Threading.Tasks;
 
 namespace DwapiCentral.Ct.Domain.Models.Extracts
 {
-    public class Manifest
+    public class Manifest : IManifest
     {
-        public Guid? Id { get; set; }
+        
         public int SiteCode { get; set; }
         public string Name { get; set; }
-        public Guid? EmrId { get; set; }
+       
         public string EmrName { get; set; }
         public EmrSetup EmrSetup { get; set; }
         public List<int> PatientPKs { get; set; } = new List<int>();
         public string Metrics { get; set; }
-        //public List<FacMetric> FacMetrics { get; set; } = new List<FacMetric>();
+        public List<FacMetric> FacMetrics { get; set; } = new List<FacMetric>();
         public int PatientCount => PatientPKs.Count;
         public UploadMode UploadMode { get; set; }
 
-        public Guid? Session { get; set; }
-        public DateTime? Start { get; set; }
         public DateTime? End { get; set; }
         public string Tag { get; set; }
 
         public string Items => string.Join(",", PatientPKs);
+
+        public Guid Id { get; set; }
+        public Guid EmrId { get; set; }
+        public Guid Session { get; set; }
+        public DateTime Start { get; set; }
 
         public Manifest()
         {
         }
 
         public Manifest(int siteCode)
-        {
-            SiteCode = siteCode;
-        }
-
-    public class XManifest
-    {
-        public Guid? Id { get; set; }
-        public int SiteCode { get; set; }
-        public string Name { get; set; }
-        public Guid? EmrId { get; set; }
-        public string EmrName { get; set; }
-        public EmrSetup EmrSetup { get; set; }
-        public List<int> PatientPKs { get; set; } = new List<int>();
-        public string Metrics { get; set; }
-       // public List<FacMetric> FacMetrics { get; set; } = new List<FacMetric>();
-        public int PatientCount => PatientPKs.Count;
-        public UploadMode UploadMode { get; set; }
-
-        public Guid? Session { get; set; }
-        public DateTime? Start { get; set; }
-        public DateTime? End { get; set; }
-        public string Tag { get; set; }
-
-        public string Items => string.Join(",", PatientPKs);
-
-        public XManifest()
-        {
-        }
-
-        public XManifest(int siteCode)
         {
             SiteCode = siteCode;
         }
@@ -77,7 +53,7 @@ namespace DwapiCentral.Ct.Domain.Models.Extracts
             foreach (var patientPk in PatientPKs)
             {
                 count++;
-                sb.AppendLine($"SELECT '{LiveGuid.NewGuid()}' as Id,{patientPk} as PatientPID,'{facilityId}' as FacilityID {(count == total ? "" : "UNION")}");
+                sb.AppendLine($"SELECT '{Guid.NewGuid()}' as Id,{patientPk} as PatientPID,'{facilityId}' as FacilityID {(count == total ? "" : "UNION")}");
             }
 
             var sql = $@"

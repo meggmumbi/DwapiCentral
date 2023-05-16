@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DwapiCentral.Ct.Application.Interfaces.Repository
 {
-    public interface IManifestRepository
+    public interface IFacilityManifestRepository
     {
-        Task AddAsync(Manifest manifest);
+        Task<FacilityManifest> AddAsync(FacilityManifest manifest);
     }
 }

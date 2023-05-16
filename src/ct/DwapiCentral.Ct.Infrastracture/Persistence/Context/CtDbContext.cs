@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DwapiCentral.Ct.Infrastracture.Persistence.Context
 {
-    public class DwapiCentralContext : DbContext
+    public class CtDbContext : DbContext
     {
         public DbSet<PatientExtract> Patients { get; set; }
         public DbSet<MasterFacility> FasterFacilities { get; set; }
@@ -18,7 +18,7 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Context
         public DbSet<Domain.Models.Extracts.Manifest> Manifests { get; set; }
         public string ConnectionString { get; internal set; }
 
-        public DwapiCentralContext(DbContextOptions<DwapiCentralContext> options) : base(options)
+        public CtDbContext(DbContextOptions<CtDbContext> options) : base(options)
         {
 
         }

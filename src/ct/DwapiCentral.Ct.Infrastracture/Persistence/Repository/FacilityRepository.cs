@@ -13,9 +13,9 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Repository
 {
     public class FacilityRepository : IFacilityRepository
     {
-        private readonly DwapiCentralContext _dbContext;
+        private readonly CtDbContext _dbContext;
 
-        public FacilityRepository( DwapiCentralContext dbContext )
+        public FacilityRepository( CtDbContext dbContext )
         {
             _dbContext = dbContext;
         }

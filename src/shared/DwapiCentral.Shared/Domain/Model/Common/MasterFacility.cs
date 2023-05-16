@@ -10,30 +10,36 @@ using DwapiCentral.Contracts.Manifest;
 
 namespace DwapiCentral.Shared.Domain.Model.Common
 {
-    public class MasterFacility : Entity<int>,IMasterFacility
+    public class MasterFacility 
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public override int Id { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Code { get; set; }
-        [MaxLength(120)]
         public string Name { get; set; }
-        [MaxLength(120)]
         public string County { get; set; }
+        public Guid? FacilityId { get; set; }
+
         public DateTime? SnapshotDate { get; set; }
         public int? SnapshotSiteCode { get; set; }
         public int? SnapshotVersion { get; set; }
-
-        //public ICollection<Facility> Mentions { get; set; } = new List<Facility>();
-
+        [NotMapped]
+        public Guid? SessionId { get; set; }
+        [NotMapped]
+        public Guid? ManifestId { get; set; }
+        [NotMapped]
+        public string JobId { get; set; }
         public MasterFacility()
         {
         }
-
-        public MasterFacility(int id, string name, string county)
+        public MasterFacility(int code, string name, string county)
         {
-            Id = id;
+            Code = code;
             Name = name;
             County = county;
+        }
+
+        public static MasterFacility GenFacility()
+        {
+            return new MasterFacility(-1, "x", "x");
         }
 
         public MasterFacility TakeSnap(List<MasterFacility> mflSnaps)
@@ -48,11 +54,11 @@ namespace DwapiCentral.Shared.Domain.Model.Common
 
             var snapVersion = null == lastSnap ? 1 : lastSnap.GetNextSnapshotVersion();
 
-            var snapSiteCode = Convert.ToInt32($"-{100 + snapVersion}{Id}");
+            var snapSiteCode = Convert.ToInt32($"-{100 + snapVersion}{Code}");
 
             var fac = this;
-            fac.SnapshotSiteCode = Id;
-            fac.Id = snapSiteCode;
+            fac.SnapshotSiteCode = Code;
+            fac.Code = snapSiteCode;
             fac.SnapshotDate = DateTime.Now;
             fac.SnapshotVersion = snapVersion;
             return fac;
@@ -65,15 +71,9 @@ namespace DwapiCentral.Shared.Domain.Model.Common
 
             return 0;
         }
-
-        public string SnapInfo()
-        {
-            return $"{SnapshotSiteCode} | {Id} {SnapshotVersion} {SnapshotDate}";
-        }
-
         public override string ToString()
         {
-            return $"{Name} [{County}]";
+            return $"{Code} - {Name} ({County})";
         }
     }
 }
