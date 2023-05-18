@@ -1,5 +1,5 @@
-using DwapiCentral.Ct.Application.DTOs.Extract;
-using DwapiCentral.Ct.Application.Interfaces.DTOs.Source;
+
+
 using DwapiCentral.Shared.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace DwapiCentral.Ct.Application.DTOs.Source
 {
-    public abstract class SourceBag<T> : ISourceBag<T>
+    public abstract class SourceBag<T> 
     {
         public string JobId { get; set; }
         public EmrSetup EmrSetup { get; set; }
@@ -27,11 +27,11 @@ namespace DwapiCentral.Ct.Application.DTOs.Source
 
         public bool HasJobId => !string.IsNullOrWhiteSpace(JobId);
 
-        public virtual void SetFacility(List<FacilityCacheDto> facilityCacheDtos)
-        {
-            var fac = facilityCacheDtos.FirstOrDefault(x => x.Code == SiteCode);
-            FacilityId = null != fac ? fac.Id : FacilityId.Value;
-        }
+        //public virtual void SetFacility(List<FacilityCacheDto> facilityCacheDtos)
+        //{
+        //    var fac = facilityCacheDtos.FirstOrDefault(x => x.Code == SiteCode);
+        //    FacilityId = null != fac ? fac.Id : FacilityId.Value;
+        //}
 
         public string JobInfo()
         {

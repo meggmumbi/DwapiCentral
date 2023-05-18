@@ -17,15 +17,13 @@ namespace DwapiCentral.Ct.Application.Services
     {
 
         private readonly IPatientExtractRepository _patientRepository;
-        private readonly IFacilityRepository    _facilityRepository;
-        private readonly IManifestRepository _manifestRepository;
+        private readonly IFacilityRepository    _facilityRepository;        
         private readonly ILogger<PatientService> _logger;
         
-        public PatientService(IPatientExtractRepository patientRepository, IFacilityRepository facilityRepository, IManifestRepository manifest,ILogger<PatientService> logger)
+        public PatientService(IPatientExtractRepository patientRepository, IFacilityRepository facilityRepository,ILogger<PatientService> logger)
         {
             _patientRepository = patientRepository;
-            _facilityRepository = facilityRepository;
-            _manifestRepository = manifest;
+            _facilityRepository = facilityRepository;           
             _logger = logger;
         }
 
@@ -42,7 +40,7 @@ namespace DwapiCentral.Ct.Application.Services
                 throw new ArgumentException($"Facility with ID {manifest.SiteCode} does not exist.");
             }
 
-            await _manifestRepository.AddAsync(manifest);
+           // await _manifestRepository.AddAsync(manifest);
 
         }
 

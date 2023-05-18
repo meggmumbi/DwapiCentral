@@ -1,5 +1,4 @@
-﻿using DwapiCentral.Ct.Application.DTOs.Extract;
-using DwapiCentral.Shared.Domain.Entities.Ct;
+﻿using DwapiCentral.Shared.Domain.Entities.Ct;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,16 +28,16 @@ namespace DwapiCentral.Ct.Domain.Models
             Created = DateTime.Now;
         }
 
-        public static List<ActionRegister> Generate(List<PatientFacilityProfile> profiles, string action, string area)
-        {
-            var list = new List<ActionRegister>();
+        //public static List<ActionRegister> Generate(List<PatientFacilityProfile> profiles, string action, string area)
+        //{
+        //    var list = new List<ActionRegister>();
 
-            foreach (var profile in profiles)
-            {
-                list.Add(new ActionRegister(action, area, profile.FacilityId, profile.Id));
-            }
+        //    foreach (var profile in profiles)
+        //    {
+        //        list.Add(new ActionRegister(action, area, profile.FacilityId, profile.Id));
+        //    }
 
-            return list;
-        }
+        //    return list;
+        //}
     }
 }

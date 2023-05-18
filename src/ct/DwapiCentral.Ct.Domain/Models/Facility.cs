@@ -1,4 +1,5 @@
-﻿using DwapiCentral.Shared.Domain.Entities;
+﻿using DwapiCentral.Contracts.Manifest;
+using DwapiCentral.Shared.Domain.Entities;
 using DwapiCentral.Shared.Domain.Entities.Ct;
 using DwapiCentral.Shared.Domain.Model.Common;
 using System;
@@ -19,6 +20,7 @@ namespace DwapiCentral.Ct.Domain.Models.Extracts
         public DateTime? SnapshotDate { get; set; }
         public int? SnapshotSiteCode { get; set; }
         public int? SnapshotVersion { get; set; }
+
 
         public virtual ICollection<PatientExtract> PatientExtracts { get; set; } = new List<PatientExtract>();
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DwapiCentral.Shared.Application.Interfaces.Repository.Common
 {
-    public interface IMasterFacilityRepository : IRepository<MasterFacility,int>
+    public interface IMasterFacilityRepository 
     {
         MasterFacility GetBySiteCode(int siteCode);
         List<MasterFacility> GetLastSnapshots(int siteCode);

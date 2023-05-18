@@ -9,9 +9,9 @@ namespace DwapiCentral.Ct.Application.Interfaces.Repository
 {
     public interface IFacilityRepository
     {
-        Task<Facility> GetByIdAsync(int sitecode);
-        Task AddAsync(Facility facility);
+        public Task<Facility> GetByIdAsync(int sitecode);
+        public Task<Facility> AddAsync(Facility facility);
         
-        Task<Facility> GetFacilityByIdAsync(int siteCode);
+        public Task<Facility> GetFacilityByIdAsync(int siteCode);
     }
 }

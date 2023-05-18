@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DwapiCentral.Ct.Infrastracture.Persistence.Repository
 {
-    public class MasterFacilityRepository : IMasterFacilityRepository
+    public class MasterFacilityRepository      
     {
         private readonly CtDbContext _dbContext;
 

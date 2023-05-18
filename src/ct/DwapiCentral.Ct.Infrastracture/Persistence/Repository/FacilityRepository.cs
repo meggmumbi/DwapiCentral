@@ -20,16 +20,21 @@ namespace DwapiCentral.Ct.Infrastracture.Persistence.Repository
             _dbContext = dbContext;
         }
 
-        public async Task AddAsync(Facility facility)
+        public async Task<Facility> AddAsync(Facility facility)
         {
-            await _dbContext.Set<Facility>().AddAsync(facility);
+           var fac =  await _dbContext.Set<Facility>().AddAsync(facility);
             await _dbContext.SaveChangesAsync();
+            return fac.Entity;
         }
 
-        public async Task<Facility> GetByIdAsync(int sitecode)
+        public Task<Facility> GetByIdAsync(int sitecode)
         {
-            return await _dbContext.Facilities.FindAsync(siteCode);
-            return await _dbContext.Set<Facility>().FirstOrDefaultAsync(p => p.Code == sitecode);
+            throw new NotImplementedException();
+        }
+
+        public Task<Facility> GetFacilityByIdAsync(int siteCode)
+        {
+            throw new NotImplementedException();
         }
     }
 }

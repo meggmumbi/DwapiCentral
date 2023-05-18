@@ -2,8 +2,10 @@
 using DwapiCentral.Ct.Application.Interfaces.Repository;
 using DwapiCentral.Ct.Application.Services;
 using DwapiCentral.Ct.Domain.Models.Extracts;
+using DwapiCentral.Shared.Domain.Model.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,17 +38,19 @@ namespace DwapiCentral.Ct.Application.Handlers
 
         //        var facManifest = FacilityManifest.Create(request.Manifest);
 
-        //        return  _facilityManifestRepository.AddAsync(facManifest);
+        //         var result = _facilityManifestRepository.AddAsync(facManifest);
 
-
-
+        //        return result;
 
 
         //    }
-        //    catch(Exception ex)
+        //    catch (Exception ex)
         //    {
         //        _logger.LogInformation($"Error saving Manifest {ex}");
         //    }
+
         //}
+
+
     }
 }
